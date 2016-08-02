@@ -6,8 +6,9 @@
      $ch = curl_init();
      $header = array("Authorization: Bearer YPLIY7UOHEJSJSMQMJBWIUIEGFQODIJ2");
      
-     $message = "what%27s%20the%20weather%20in%20rome";
-      
+     $message = "what's the weather in rome";
+     $message = urlencode($message);
+     
      curl_setopt($ch, CURLOPT_URL, "https://api.wit.ai/message?v=20160801&q=$message");
      curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
      curl_setopt($ch, CURLOPT_POST, true);
