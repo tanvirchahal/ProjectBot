@@ -7,8 +7,10 @@
      //Initial Request
      $ch = curl_init();
      
+     $message = "hi";
+     $message = urlencode($message);
      $headers = array('Authorization: Bearer YPLIY7UOHEJSJSMQMJBWIUIEGFQODIJ2');
-     curl_setopt($ch, CURLOPT_URL, "https://api.wit.ai/message?v=20160803&q=hey%21");
+     curl_setopt($ch, CURLOPT_URL, "https://api.wit.ai/message?v=20160803&q=$message");
      curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
      curl_setopt($ch, CURLOPT_POST, true);
      curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
@@ -26,9 +28,16 @@
          echo $result['msg_id']."<br/>";
          echo $result['_text'];
          
-         foreach($result['entities']['intent'] as $a)
-         {
-            echo $a['confidence'];
+         if(!empty($result['entities'])){
+            
+            foreach($result['entities']['intent'] as $a)
+            {
+               echo $a['value'];
+            }
+         }
+         
+         else{
+             echo "woops didn't get you man";
          }
          
      } else{
