@@ -6,6 +6,7 @@
      
      public function sendRequest($m){
          $this->message = $m;
+         $m = urlencode($m);
          
          $ch = curl_init();
          $header = array('Authorization: Bearer YPLIY7UOHEJSJSMQMJBWIUIEGFQODIJ2');
@@ -23,9 +24,13 @@
          } 
      }
      
-     public function translate($json){
+     public function translate($json,$sandbox){
          $msgId;$text;$confidence;$intent;
-         print_r($json);
+         
+         if($sandbox){
+            print_r($json);
+         }
+         
          echo "<br/>";
          if($json){
              $result = json_decode($json,true);

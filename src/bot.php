@@ -3,29 +3,24 @@
      * Developed by Tanvir Chahal
      * 03-Aug-2016
      */
+    if(isset($_POST['_text'])){
+        require 'brain.php';
+        $myBot = new Bot;
+        $result = $myBot->sendRequest($_POST['_text']);
+        $myBot->translate($result,false);    
+    } 
      
-    require 'brain.php';
-    $myBot = new Bot;
-    $result = $myBot->sendRequest("wass");
-    $myBot->translate($result);
-    /*if($result){
-         print_r($result);
-         $result = json_decode($result, true);
-         
-         echo "<br/>";
-         echo $result['msg_id']."<br/>";
-         echo $result['_text'];
-         
-         if(!empty($result['entities'])){
-            
-            foreach($result['entities']['intent'] as $a)
-            {
-               echo $a['value'];
-            }
-         }
-         
-         else{
-             echo "woops didn't get you";
-         }
-     }*/ 
 ?>
+<!DOCTYPE HTML>
+<head>
+    <title>Project Bot</title>
+</head>
+
+<body>
+    <form action="" method="POST">
+        <input type="text" required="required" name="_text">
+        
+        <button type="submit" name="submitbtn">Submit</button>
+    </form>
+</body>
+</html>
