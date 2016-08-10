@@ -3,9 +3,14 @@
      * Developed by Tanvir Chahal
      * 03-Aug-2016
      */
-
+     
+    require 'brain.php';
+    $myBot = new Bot;
+    $requestResult = $myBot->sendRequest("Hey");
+    print_r($requestResult);
+    
      //Initial Request
-     $ch = curl_init();
+     /*$ch = curl_init();
      
      $message = "hi";
      $message = urlencode($message);
@@ -42,6 +47,6 @@
          
      } else{
          echo curl_error($ch);
-     }
+     } */
      
 ?>
