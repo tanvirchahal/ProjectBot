@@ -6,26 +6,9 @@
      
     require 'brain.php';
     $myBot = new Bot;
-    $requestResult = $myBot->sendRequest("Hey");
-    print_r($requestResult);
-    
-     //Initial Request
-     /*$ch = curl_init();
-     
-     $message = "hi";
-     $message = urlencode($message);
-     $headers = array('Authorization: Bearer YPLIY7UOHEJSJSMQMJBWIUIEGFQODIJ2');
-     curl_setopt($ch, CURLOPT_URL, "https://api.wit.ai/message?v=20160803&q=$message");
-     curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-     curl_setopt($ch, CURLOPT_POST, true);
-     curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-     
-     $result = curl_exec($ch);
-     
-     curl_close($ch);
-     
-     if($result){
+    $result = $myBot->sendRequest("wass");
+    $myBot->translate($result);
+    /*if($result){
          print_r($result);
          $result = json_decode($result, true);
          
@@ -42,11 +25,7 @@
          }
          
          else{
-             echo "woops didn't get you man";
+             echo "woops didn't get you";
          }
-         
-     } else{
-         echo curl_error($ch);
-     } */
-     
+     }*/ 
 ?>

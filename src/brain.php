@@ -20,8 +20,54 @@
          
          if($result){
             return $result;
+         } 
+     }
+     
+     public function translate($json){
+         $msgId;$text;$confidence;$intent;
+         print_r($json);
+         echo "<br/>";
+         if($json){
+             $result = json_decode($json,true);
+             
+             $msgId = $result['msg_id'];
+             $text = $result['_text'];
+             
+             if(!empty($result['entities'])){
+                 foreach($result['entities']['intent'] as $a){
+                     $confidence = $a['confidence'];
+                     $intent = $a['value'];
+                 }
+                 $this->interpret($intent);
+             }
+             else{
+                 $this->interpret("err01");
+             }
+         } 
+         //If There is no JSON
+         else{
+             
+         }
+     }
+     
+     public function interpret($intent){
+         switch($intent){
+             case "sayHello":
+                 $text = "Hey, How are you?";
+                 $this->showMessage($text);
+                 break;
+             
+             default:
+                 $this->showMessage("err01");
+                 break;
+         }
+     }
+     
+     public function showMessage($text){
+         if($text!="err01"){
+             echo $text;
          } else{
-            return "Sorry Couldn't Get that";
+             echo "Couldn't Understand That";
          }
      }
  }
